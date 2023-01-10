@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package battle_items.v1;
+
+option go_package = "./battle_items/v1;battlepb";
+
+import "battle_items/v1/battle_items.proto";
+
+service BattleItemService {
+  rpc GetBattleItem(GetBattleItemRequest) returns (GetBattleItemResponse) {};
+}

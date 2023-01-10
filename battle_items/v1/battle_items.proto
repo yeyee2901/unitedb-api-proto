@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package battle_items.v1;
+
+option go_package = "./battle_items/v1;battlepb";
+
+import "google/protobuf/timestamp.proto";
+
+message BattleItem {
+  // ID of the item, this is only known in bot scope, the unite-db.com API
+  // does not provide this
+  uint64 id = 1;
+
+  // name of the item
+  string name = 2;
+
+  // item effect
+  string description = 3;
+
+  // tier of the item (at the time of the update)
+  string tier = 4;
+
+  // cooldown in seconds
+  uint32 cooldown = 5;
+
+  // trainer level requirement to unlock this item
+  uint32 trainer_level = 6;
+
+  // last updated time
+  google.protobuf.Timestamp last_updated = 57;
+}
+
+message GetBattleItemRequest {
+  // item name
+  optional string name = 1;
+
+  // item tier
+  optional string tier = 2;
+}
+
+message GetBattleItemResponse { BattleItem data = 1; }
