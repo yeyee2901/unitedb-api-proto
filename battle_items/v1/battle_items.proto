@@ -32,10 +32,10 @@ message BattleItem {
 
 message GetBattleItemRequest {
   // item name
-  optional string name = 1;
+  optional string name = 1; // @gotags: validate:"required_without=Tier,omitempty,max=30"
 
   // item tier
-  optional string tier = 2;
+  optional string tier = 2; // @gotags: validate:"required_without=Name,omitempty,len=1"
 }
 
 message GetBattleItemResponse { BattleItem data = 1; }
