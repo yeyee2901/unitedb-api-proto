@@ -1,14 +1,13 @@
 syntax = "proto3";
 
-package battle_items.v1;
+package unitedb.v1;
 
-option go_package = "./battle_items/v1;battlepb";
+option go_package = "./unitedb/v1;unitepb";
 
 import "google/protobuf/timestamp.proto";
 
 message BattleItem {
-  // ID of the item, this is only known in bot scope, the unite-db.com API
-  // does not provide this
+  // id of the item
   uint64 id = 1;
 
   // name of the item
@@ -38,7 +37,7 @@ message GetBattleItemRequest {
   optional string tier = 2; // @gotags: validate:"required_without=Name,omitempty,len=1"
 }
 
-message GetBattleItemResponse { 
+message GetBattleItemResponse {
   // response data
-  BattleItem data = 1; 
+  BattleItem data = 1;
 }
