@@ -2,10 +2,22 @@ syntax = "proto3";
 
 package unitedb.v1;
 
-option go_package = "./unitedb/v1;unitepb";
-
 import "unitedb/v1/battle_items.proto";
 import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "./unitedb/v1;unitepb";
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  info: {
+    title: "Pokemon Unite DB - gRPC API";
+    version: "1.0";
+    contact: {
+      name: "Yeyee";
+      url: "https://github.com/yeyee2901/unitedb-api-proto";
+      email: "gabriel777sh@gmail.com";
+    };
+  };
+};
 
 service UniteDBService {
   rpc GetBattleItem(GetBattleItemRequest) returns (GetBattleItemResponse) {

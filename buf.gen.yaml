@@ -17,4 +17,4 @@ plugins:
     out: gen/openapiv2
     opt:
       - allow_merge=true
-      - merge_file_name=docs.json
+      - merge_file_name=unitedb
