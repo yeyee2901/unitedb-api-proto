@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package unitedb.v1;
+
+option go_package = "./unitedb/v1;unitepb";
+
+import "unitedb/v1/battle_items.proto";
+import "google/api/annotations.proto";
+
+service UniteDBService {
+  rpc GetBattleItem(GetBattleItemRequest) returns (GetBattleItemResponse) {
+    option (google.api.http) = {
+      post : "/v1/battle-item"
+      body : "*"
+    };
+  };
+}

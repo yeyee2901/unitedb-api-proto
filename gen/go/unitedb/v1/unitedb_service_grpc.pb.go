@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             (unknown)
-// source: unitedb/v1/battle_items_service.proto
+// source: unitedb/v1/unitedb_service.proto
 
 package unitepb
 
@@ -99,5 +99,5 @@ var UniteDBService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "unitedb/v1/battle_items_service.proto",
+	Metadata: "unitedb/v1/unitedb_service.proto",
 }

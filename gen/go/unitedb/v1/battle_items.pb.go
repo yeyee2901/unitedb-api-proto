@@ -129,9 +129,9 @@ type GetBattleItemRequest struct {
 	unknownFields protoimpl.UnknownFields
 
 	// item name
-	Name *string `protobuf:"bytes,1,opt,name=name,proto3,oneof" json:"name,omitempty" validate:"required_without=Tier,omitempty,max=30"`  
+	Name *string `protobuf:"bytes,1,opt,name=name,proto3,oneof" json:"name,omitempty"` // @gotags: validate:"required_without=Tier,omitempty,max=30"
 	// item tier
-	Tier *string `protobuf:"bytes,2,opt,name=tier,proto3,oneof" json:"tier,omitempty" validate:"required_without=Name,omitempty,len=1"`  
+	Tier *string `protobuf:"bytes,2,opt,name=tier,proto3,oneof" json:"tier,omitempty"` // @gotags: validate:"required_without=Name,omitempty,len=1"
 }
 
 func (x *GetBattleItemRequest) Reset() {
