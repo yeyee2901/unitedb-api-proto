@@ -20,10 +20,10 @@ message BattleItem {
   uint32 cooldown = 5;
 
   // trainer level requirement to unlock this item
-  uint32 trainer_level = 6;
+  uint32 trainer_level = 6 [json_name="trainer_level"];
 
   // last updated time
-  google.protobuf.Timestamp last_updated = 57;
+  google.protobuf.Timestamp last_updated = 57 [json_name="last_updated"];
 }
 
 message GetBattleItemRequest {
