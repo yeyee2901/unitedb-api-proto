@@ -34,10 +34,13 @@ message GetBattleItemRequest {
   optional string name = 1; // @gotags: validate:"required_without=Tier,omitempty,max=30"
 
   // item tier
-  optional string tier = 2; // @gotags: validate:"required_without=Name,omitempty,len=1"
+  optional string tier = 2; // @gotags: validate:"required_without=Name,omitempty"
 }
 
 message GetBattleItemResponse {
   // response data
-  BattleItem data = 1;
+  repeated BattleItem data = 1;
+
+  // length of item found
+  uint32 total = 2;
 }

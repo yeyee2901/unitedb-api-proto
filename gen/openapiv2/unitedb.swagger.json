@@ -129,7 +129,7 @@
         },
         "tier": {
           "type": "string",
-          "description": "@gotags: validate:\"required_without=Name,omitempty,len=1\"",
+          "description": "@gotags: validate:\"required_without=Name,omitempty\"",
           "title": "item tier"
         }
       }
@@ -138,8 +138,16 @@
       "type": "object",
       "properties": {
         "data": {
-          "$ref": "#/definitions/v1BattleItem",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1BattleItem"
+          },
           "title": "response data"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64",
+          "title": "length of item found"
         }
       }
     }
