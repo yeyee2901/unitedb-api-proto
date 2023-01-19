@@ -7,9 +7,6 @@ option go_package = "./unitedb/v1;unitepb";
 import "google/protobuf/timestamp.proto";
 
 message BattleItem {
-  // id of the item
-  uint64 id = 1;
-
   // name of the item
   string name = 2;
 

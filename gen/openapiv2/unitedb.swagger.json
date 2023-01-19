@@ -85,11 +85,6 @@
     "v1BattleItem": {
       "type": "object",
       "properties": {
-        "id": {
-          "type": "string",
-          "format": "uint64",
-          "title": "id of the item"
-        },
         "name": {
           "type": "string",
           "title": "name of the item"
