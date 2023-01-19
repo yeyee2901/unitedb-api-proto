@@ -4,7 +4,7 @@
 - You can access the development server at: `203.194.113.23`
   - gRPC port: `40`
   - HTTP port (using JSON-REST contract): `41` (access using `http://203.194.113.23`)
-  - There's also [Swagger-UI](http://203.194.113.23/swagger-ui) available for use
+  - There's also [Swagger-UI](http://203.194.113.23:41/swagger-ui) available for use
 - For the development, I won't be enforcing HTTPS yet, I plan to enforce HTTPS when it's production ready.
 - The production release is not ready yet, as I'm planning to work on all the
   features mentioned below before deploying it.
