@@ -1,19 +1,22 @@
 version: v1
 plugins:
-  - plugin: go
+  - plugin: buf.build/protocolbuffers/go
     out: gen/go
     opt: paths=source_relative
-  - plugin: go-grpc
+
+  - plugin: buf.build/grpc/go
     out: gen/go
     opt:
       - paths=source_relative
       - require_unimplemented_servers=false
-  - plugin: grpc-gateway
+
+  - plugin: buf.build/grpc-ecosystem/gateway
     out: gen/go
     opt:
       - paths=source_relative
       - generate_unbound_methods=true
-  - plugin: openapiv2
+
+  - plugin: buf.build/grpc-ecosystem/openapiv2
     out: gen/openapiv2
     opt:
       - allow_merge=true
