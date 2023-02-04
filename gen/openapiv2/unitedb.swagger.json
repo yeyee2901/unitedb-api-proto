@@ -52,6 +52,38 @@
           "UniteDBService"
         ]
       }
+    },
+    "/v1/held-item": {
+      "post": {
+        "operationId": "UniteDBService_GetHeldItem",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetHeldItemResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1GetHeldItemRequest"
+            }
+          }
+        ],
+        "tags": [
+          "UniteDBService"
+        ]
+      }
     }
   },
   "definitions": {
@@ -143,6 +175,81 @@
           "type": "integer",
           "format": "int64",
           "title": "length of item found"
+        }
+      }
+    },
+    "v1GetHeldItemRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "@gotags: validate:\"required_without_all,omitempty,max=30\"",
+          "title": "item name"
+        },
+        "tier": {
+          "type": "string",
+          "description": "@gotags: validate:\"required_without_all,omitempty,max=4\"",
+          "title": "item tier"
+        },
+        "statsBonus": {
+          "type": "string",
+          "description": "@gotags: validate:\"required_without_all,omitempty,max=10\";",
+          "title": "stats bonus category of the item (such as Atk, HP, etc)"
+        }
+      }
+    },
+    "v1GetHeldItemResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1HeldItem"
+          },
+          "title": "response data"
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64",
+          "title": "length of the item found"
+        }
+      }
+    },
+    "v1HeldItem": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "item name"
+        },
+        "description": {
+          "type": "string",
+          "title": "effect of the item"
+        },
+        "tier": {
+          "type": "string",
+          "title": "tier of the item (at the last update)"
+        },
+        "stats_bonus": {
+          "type": "string",
+          "title": "which main stats that is affected (Atk, SpAtk, etc)"
+        },
+        "stats_at_level_1": {
+          "type": "string",
+          "title": "stats at level 1"
+        },
+        "stats_at_level_10": {
+          "type": "string",
+          "title": "stats at level 10"
+        },
+        "stats_at_level_20": {
+          "type": "string",
+          "title": "stats at level 20"
+        },
+        "last_updated": {
+          "type": "string",
+          "format": "date-time",
+          "title": "when was this item last fetched from the website"
         }
       }
     }

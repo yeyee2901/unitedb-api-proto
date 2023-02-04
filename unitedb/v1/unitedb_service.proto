@@ -2,9 +2,13 @@ syntax = "proto3";
 
 package unitedb.v1;
 
-import "unitedb/v1/battle_items.proto";
+// external imports
 import "google/api/annotations.proto";
 import "protoc-gen-openapiv2/options/annotations.proto";
+
+// project imports
+import "unitedb/v1/battle_items.proto";
+import "unitedb/v1/held_items.proto";
 
 option go_package = "./unitedb/v1;unitepb";
 option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
@@ -23,6 +27,13 @@ service UniteDBService {
   rpc GetBattleItem(GetBattleItemRequest) returns (GetBattleItemResponse) {
     option (google.api.http) = {
       post : "/v1/battle-item"
+      body : "*"
+    };
+  };
+
+  rpc GetHeldItem(GetHeldItemRequest) returns (GetHeldItemResponse) {
+    option (google.api.http) = {
+      post : "/v1/held-item"
       body : "*"
     };
   };

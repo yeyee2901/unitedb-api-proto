@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+package unitedb.v1;
+
+option go_package = "./unitedb/v1;unitepb";
+
+import "google/protobuf/timestamp.proto";
+
+message HeldItem {
+  // item name
+  string name = 1;
+
+  // effect of the item
+  string description = 2;
+
+  // tier of the item (at the last update)
+  string tier = 3;
+
+  // which main stats that is affected (Atk, SpAtk, etc)
+  string stats_bonus = 4 [ json_name = "stats_bonus" ];
+
+  // stats at level 1
+  string stats_at_level_1 = 5 [ json_name = "stats_at_level_1" ];
+
+  // stats at level 10
+  string stats_at_level_10 = 6 [ json_name = "stats_at_level_10" ];
+
+  // stats at level 20
+  string stats_at_level_20 = 7 [ json_name = "stats_at_level_20" ];
+
+  // when was this item last fetched from the website
+  google.protobuf.Timestamp last_updated = 20 [ json_name = "last_updated" ];
+}
+
+message GetHeldItemRequest {
+  // item name
+  optional string name = 1; // @gotags: validate:"required_without_all,omitempty,max=30"
+
+  // item tier
+  optional string tier = 2; // @gotags: validate:"required_without_all,omitempty,max=4"
+
+  // stats bonus category of the item (such as Atk, HP, etc)
+  optional string statsBonus = 3; // @gotags: validate:"required_without_all,omitempty,max=10";
+}
+
+message GetHeldItemResponse {
+  // response data
+  repeated HeldItem data = 1;
+
+  // length of the item found
+  uint32 total = 2;
+}

@@ -23,6 +23,7 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type UniteDBServiceClient interface {
 	GetBattleItem(ctx context.Context, in *GetBattleItemRequest, opts ...grpc.CallOption) (*GetBattleItemResponse, error)
+	GetHeldItem(ctx context.Context, in *GetHeldItemRequest, opts ...grpc.CallOption) (*GetHeldItemResponse, error)
 }
 
 type uniteDBServiceClient struct {
@@ -42,20 +43,35 @@ func (c *uniteDBServiceClient) GetBattleItem(ctx context.Context, in *GetBattleI
 	return out, nil
 }
 
+func (c *uniteDBServiceClient) GetHeldItem(ctx context.Context, in *GetHeldItemRequest, opts ...grpc.CallOption) (*GetHeldItemResponse, error) {
+	out := new(GetHeldItemResponse)
+	err := c.cc.Invoke(ctx, "/unitedb.v1.UniteDBService/GetHeldItem", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // UniteDBServiceServer is the server API for UniteDBService service.
-// All implementations should embed UnimplementedUniteDBServiceServer
+// All implementations must embed UnimplementedUniteDBServiceServer
 // for forward compatibility
 type UniteDBServiceServer interface {
 	GetBattleItem(context.Context, *GetBattleItemRequest) (*GetBattleItemResponse, error)
+	GetHeldItem(context.Context, *GetHeldItemRequest) (*GetHeldItemResponse, error)
+	mustEmbedUnimplementedUniteDBServiceServer()
 }
 
-// UnimplementedUniteDBServiceServer should be embedded to have forward compatible implementations.
+// UnimplementedUniteDBServiceServer must be embedded to have forward compatible implementations.
 type UnimplementedUniteDBServiceServer struct {
 }
 
 func (UnimplementedUniteDBServiceServer) GetBattleItem(context.Context, *GetBattleItemRequest) (*GetBattleItemResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetBattleItem not implemented")
 }
+func (UnimplementedUniteDBServiceServer) GetHeldItem(context.Context, *GetHeldItemRequest) (*GetHeldItemResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetHeldItem not implemented")
+}
+func (UnimplementedUniteDBServiceServer) mustEmbedUnimplementedUniteDBServiceServer() {}
 
 // UnsafeUniteDBServiceServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to UniteDBServiceServer will
@@ -86,6 +102,24 @@ func _UniteDBService_GetBattleItem_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _UniteDBService_GetHeldItem_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetHeldItemRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UniteDBServiceServer).GetHeldItem(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/unitedb.v1.UniteDBService/GetHeldItem",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UniteDBServiceServer).GetHeldItem(ctx, req.(*GetHeldItemRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // UniteDBService_ServiceDesc is the grpc.ServiceDesc for UniteDBService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -96,6 +130,10 @@ var UniteDBService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetBattleItem",
 			Handler:    _UniteDBService_GetBattleItem_Handler,
+		},
+		{
+			MethodName: "GetHeldItem",
+			Handler:    _UniteDBService_GetHeldItem_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
