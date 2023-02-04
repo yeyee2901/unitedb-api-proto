@@ -33,14 +33,14 @@ message HeldItem {
 }
 
 message GetHeldItemRequest {
-  // item name
-  optional string name = 1; // @gotags: validate:"required_without_all,omitempty,max=30"
+  // @gotags: validate:"omitempty,max=30"
+  optional string name = 1;
 
-  // item tier
-  optional string tier = 2; // @gotags: validate:"required_without_all,omitempty,max=4"
+  // @gotags: validate:"omitempty,max=4"
+  optional string tier = 2;
 
-  // stats bonus category of the item (such as Atk, HP, etc)
-  optional string statsBonus = 3; // @gotags: validate:"required_without_all,omitempty,max=10";
+  // @gotags: validate:"omitempty,max=20"
+  optional string stats_bonus = 3 [ json_name = "stats_bonus" ];
 }
 
 message GetHeldItemResponse {

@@ -183,18 +183,15 @@
       "properties": {
         "name": {
           "type": "string",
-          "description": "@gotags: validate:\"required_without_all,omitempty,max=30\"",
-          "title": "item name"
+          "title": "@gotags: validate:\"omitempty,max=30\""
         },
         "tier": {
           "type": "string",
-          "description": "@gotags: validate:\"required_without_all,omitempty,max=4\"",
-          "title": "item tier"
+          "title": "@gotags: validate:\"omitempty,max=4\""
         },
-        "statsBonus": {
+        "stats_bonus": {
           "type": "string",
-          "description": "@gotags: validate:\"required_without_all,omitempty,max=10\";",
-          "title": "stats bonus category of the item (such as Atk, HP, etc)"
+          "title": "@gotags: validate:\"omitempty,max=20\""
         }
       }
     },
